@@ -18,10 +18,12 @@ def sent_analyzer():
     sadness = response['sadness']
     dominant_emotion = response['dominant_emotion']
 
-
-    # Return a formatted string with the sentiment label and score
-    output = "For the given statement, the system response is '{}' : {}, '{}' : {}, '{}' : {}, '{}' : {}, '{}' : {}. The dominant emotion is {}".format('anger',anger,'disgust',disgust,'fear',fear,'joy',joy,'sadness',sadness,dominant_emotion)
-    return output
+    if dominant_emotion is None:
+        return "Invalid text! Please try again!"
+    else:
+        # Return a formatted string with the sentiment label and score
+        output = "For the given statement, the system response is '{}' : {}, '{}' : {}, '{}' : {}, '{}' : {}, '{}' : {}. The dominant emotion is {}".format('anger',anger,'disgust',disgust,'fear',fear,'joy',joy,'sadness',sadness,dominant_emotion)
+        return output
 
 @app.route("/")
 def render_index_page():
